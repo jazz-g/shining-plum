@@ -1,0 +1,42 @@
+[options]
+font = Iosevka Custom 12
+
+[colors]
+
+# special
+foreground      = #e2cfdf
+foreground_bold = #e2cfdf
+cursor          = #e2cfdf
+background      = rgba(45, 37, 61, 0.8)
+
+# black
+color0  = #2d253d
+color8  = #9e909c
+
+# red
+color1  = #8e93bb
+color9  = #8e93bb
+
+# green
+color2  = #AE99BC
+color10 = #ae99BC
+
+# yellow
+color3  = #BBA0BD
+color11 = #bba0bd
+
+# blue
+color4  = #da9cba
+color12 = #da9cba
+
+# magenta
+color5  = #f4a5bd
+color13 = #f4a5bd
+
+# cyan
+color6  = #cea3c2
+color14 = #cea3c2
+
+# white
+color7  = #e2cfdf
+color15 = #e2cfdf
