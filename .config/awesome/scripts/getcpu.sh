@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo $(grep 'cpu ' /proc/stat | awk '{usage=(($2+$4)*100/($2+$4+$5))/100} END {print usage}')
+echo $[100-$(vmstat 1 2|tail -1|awk '{print $15}')]
