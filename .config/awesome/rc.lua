@@ -85,7 +85,14 @@ awful.layout.layouts = {
 -- Start Picom Compositor
 awful.spawn("picom")
 
+-- Start Redshift program
+awful.spawn.with_shell("if [[ $(pgrep redshift) ]]; then echo \"Redshift already running\"; else redshift; fi")
 
+-- Touchpad settings
+--awful.spawn("xinput set-prop 13 310 1")
+--awful.spawn("xinput set-prop 13 312 0")
+--awful.spawn("xinput set-prop 13 290 1")
+--awful.spawn("xinput set-prop 13 299 1")
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
@@ -261,8 +268,7 @@ awful.screen.connect_for_each_screen(function(s)
    -- }}}
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 7})
-
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 7, type = "menu"})
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.flex.horizontal,
@@ -271,7 +277,8 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- {{{ Sidebar
     	--creation of side bar and creation of logic wibox to test if mouseover the sidebar
-    dock = awful.wibar({position="left", screen=s, width=340, height=800, visible=false, shape = gears.shape.rounded_rect})
+    dock = awful.wibar({position="left", screen=s, width=340, height=800, visible=false, shape = gears.shape.rectangle})
+    dock.type = "dock"
 
 	-- SHOW SIDEBAR ON MOUSEOVER {{{
 
@@ -336,7 +343,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Dashboard {{{
     	-- Shape for wiboxes
 	local dashboardBoxshape = function(cr, width, height)
-		gears.shape.rounded_rect(cr, width, height, 50)
+		gears.shape.rectangle(cr, width, height)
 	end
 
 	local makeDashboardBox = function(xval, yval, wval, hval)
@@ -352,6 +359,7 @@ awful.screen.connect_for_each_screen(function(s)
 			visible = false,
 			shape = dashboardBoxshape,
 			bg = beautiful.bg_normal})
+		box.type = "dock"
 		return box
 
 	end
@@ -459,6 +467,15 @@ globalkeys = gears.table.join(
 	-- Screenshot keys
 	awful.key({}, "Print", function()
 		awful.spawn.with_shell('scrot && dunstify -u low -i ~/.config/awesome/icons/camera-photo.png "<span font=\'16px\'>Screenshot Saved</span>"') end),
+
+	-- Media Keys
+	awful.key({}, "XF86AudioPrev", function()
+		awful.spawn("mpc prev") end),
+	awful.key({}, "XF86AudioPlay", function()
+		awful.spawn("mpc toggle") end),
+	awful.key({}, "XF86AudioNext", function()
+		awful.spawn("mpc next") end),
+
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
@@ -763,3 +780,4 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
