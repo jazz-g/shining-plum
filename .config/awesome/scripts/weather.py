@@ -3,21 +3,21 @@
 import pyowm
 
 # Put api key here
-owm = pyowm.OWM('#########################################')
+owm = pyowm.OWM('##############################')
 
-wObservation = owm.weather_at_zip_code('01451', 'us')
+wObservation = owm.weather_manager().weather_at_zip_code('XXXXX', 'us')
 
-weather = wObservation.get_weather()
+weather = wObservation.weather
 
-status = weather.get_status()
+status = weather.status
 # replace with 'fahrenheit' to use F instead of C
-temps = weather.get_temperature('celsius')
+temps = weather.temperature('celsius')
 high = temps['temp_max']
 low = temps['temp_min']
 temp = temps['temp']
 
 # logic to figure out what icon to use
-code = weather.get_weather_code()
+code = weather.weather_code
 code_f = int(str(code)[0])
 weather_icon = ""
 
