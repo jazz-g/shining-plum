@@ -5,7 +5,7 @@ local gears = require("gears")
 local watch = require("awful.widget.watch")
 
 -- Commands to be run to get the disk usage
-local get_ram_cmd = beautiful.homePath .. ".config/awesome/scripts/getdisk.sh"
+local get_disk_cmd = beautiful.homePath .. ".config/awesome/scripts/getdisk.sh"
 
 local main_color = beautiful.color6
 
@@ -35,7 +35,7 @@ local disk_bar = wibox.widget {
 
 -- Creation of imagebox widget
 local disk_image = wibox.widget {
-	image = beautiful.homePath .. ".config/awesome/icons/disk.png",
+	image = "/home/jazz/.config/awesome/icons/disk.png",
 	widget = wibox.widget.imagebox,
 	align = "center",
 	resize = false,
