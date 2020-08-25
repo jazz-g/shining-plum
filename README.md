@@ -1,5 +1,7 @@
 # Shining Plum theme for Awesomewm
-Dotfiles for r/unixporn
+Dotfiles for r/unixporn  
+
+![Screenshot](shining-plum.png)
 
 ## Installation
 Clone and extract to home directory.  
